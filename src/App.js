@@ -3,30 +3,35 @@ import './App.css';
 
 var weekDays = [
   {
+    "id":1,
     "day": "Monday",
     "date": "6/5/2017",
     "restaurant": "Chick-fil-A",
     "menu": "http://www.chickfila.com/menu"
   },
   {
+    "id":2,
     "day": "Tuesday",
     "date": "6/6/2017",
     "restaurant": "Panera",
     "menu": "http://www.panera.com/menu"
   },
   {
+    "id":3,
     "day": "Wednesday",
     "date": "6/7/2017",
     "restaurant": "Wasabi Sushi",
     "menu": "http://www.wasabi.com/menu"
   },
   {
+    "id":4,
     "day": "Thursday",
     "date": "6/8/2017",
     "restaurant": "Smokey Bones",
     "menu": "http://www.smokeybones.com/menu"
   },
   {
+    "id":5,
     "day": "Friday",
     "date": "6/9/2017",
     "restaurant": "Pi Pizza",

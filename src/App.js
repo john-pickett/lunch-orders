@@ -121,7 +121,7 @@ class TableRow extends React.Component {
 
   render() {
     var order = this.props.order;
-    var price = order.price;
+    var price = "$" + order.price;
     var day = order.day;
     var name = order.employee;
     var item = order.item;
@@ -163,16 +163,15 @@ class OrderTable extends React.Component {
           row.push(<TableRow order={order} />);
         }
       });
-      displayPrice = <tr><td>Total: </td><td>{totalPrice}</td></tr>;
+      displayPrice = <tr><td>Total: </td><td>${totalPrice}</td></tr>;
     } else {
-      displayPrice = <tr><td>Total: </td><td>{totalPrice}</td></tr>;
       orders.forEach(function(order){
         if (order.employee === employeeOption){
           totalPrice += order.price;
           row.push(<TableRow order={order} />);
         }
       });
-      displayPrice = <tr><td>Total: </td><td>{totalPrice}</td></tr>;
+      displayPrice = <tr><td>Total: </td><td>${totalPrice}</td></tr>;
     }
 
 

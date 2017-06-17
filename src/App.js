@@ -312,17 +312,104 @@ class WeeklyOrders extends Component{
   }
 }
 
+class RestaurantForm extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      day: '',
+      date: '',
+      restaurant: '',
+      menu: ''
+    };
+
+    this.handleInputChange = this.handleInputChange.bind(this);
+    this.handleDayChange = this.handleDayChange.bind(this);
+    this.handleDateChange = this.handleDateChange.bind(this);
+    this.handleNameChange = this.handleNameChange.bind(this);
+    this.handleMenuChange = this.handleMenuChange.bind(this);
+  }
+
+  handleDayChange(event){
+    this.setState({
+      day: event.target.value
+    });
+  }
+
+  handleDateChange(event){
+    this.setState({
+      date: event.target.value
+    });
+  }
+
+  handleNameChange(event){
+    this.setState({
+      restaurant: event.target.value
+    });
+  }
+
+  handleMenuChange(event){
+    this.setState({
+      menu: event.target.value
+    });
+  }
+
+  handleInputChange(event) {
+    event.preventDefault();
+    const value = this.state;
+    console.log(value);
+    this.props.addRestaurant(value);
+
+  }
+
+  render() {
+    return (
+      <form onSubmit={this.handleInputChange}>
+        <label>
+          Day:
+          <input type="text" value={this.state.day}  onChange={this.handleDayChange}/>
+        </label>
+        <label>
+          Date:
+          <input type="text" value={this.state.date}  onChange={this.handleDateChange}/>
+        </label>
+        <label>
+          Restaurant Name:
+          <input type="text" value={this.state.restaurant}  onChange={this.handleNameChange}/>
+        </label>
+        <label>
+          Menu URL:
+          <input type="text" value={this.state.menu}  onChange={this.handleMenuChange}/>
+        </label>
+        <input type="submit" value="Submit" />
+      </form>
+    );
+  }
+}
+
 class MenuTable extends Component {
   constructor(props){
     super(props);
     this.state = {
       data: this.props.days
     };
+
+    this.addRestaurant = this.addRestaurant.bind(this);
+  }
+
+  addRestaurant(input){
+    console.log(input);
+    let data = this.state.data;
+    data.push(input);
+    this.setState({
+      data: data
+    });
   }
 
   render() {
-    var row = [];
-    this.props.days.forEach(function(day){
+    let row = [];
+    let daysData = this.state.data;
+
+    daysData.forEach(function(day){
       row.push(<tr><td>{day.day}</td><td>{day.date}</td><td>{day.restaurant}</td><td><a href={day.menu}>{day.menu}</a></td></tr>);
     });
 
@@ -341,6 +428,7 @@ class MenuTable extends Component {
             {row}
           </tbody>
         </table>
+        <RestaurantForm addRestaurant={this.addRestaurant}/>
       </div>
     );
   }
@@ -351,10 +439,10 @@ class App extends Component {
     return (
       <div>
         <h1>OneSpace Lunch Ordering</h1>
-        <h2>This Week's Menus</h2>
+        <h2>Restaurants and Menus</h2>
           <MenuTable days={weekDays}/>
-        <h2>This Week's Current Orders</h2>
-        <WeeklyOrders orders={lunchOrders} />
+        <h2>Current Lunch Orders</h2>
+          <WeeklyOrders orders={lunchOrders} />
       </div>
     );
   }

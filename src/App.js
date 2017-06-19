@@ -192,7 +192,7 @@ class OrderForm extends React.Component {
 
   handlePriceChange(event){
     this.setState({
-      price: event.target.value
+      price: parseInt(event.target.value)
     });
   }
 

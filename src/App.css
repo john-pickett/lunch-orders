@@ -16,6 +16,10 @@
   padding-right: 100px;
 }
 
+form select {
+  width: 170px;
+}
+
 th, td {
   padding: 5px;
 }

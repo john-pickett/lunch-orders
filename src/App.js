@@ -201,7 +201,14 @@ class OrderForm extends React.Component {
       <form onSubmit={this.handleInputChange}>
         <label>
           Employee:
-          <input type="text" value={this.state.employee}  onChange={this.handleEmployeeChange}/>
+          <select value={this.state.employee} onChange={this.handleEmployeeChange}>
+            <option value="All">All</option>
+            <option value="John P">John P</option>
+            <option value="Mike H">Mike H</option>
+            <option value="Mary F">Mary F</option>
+            <option value="Jim B">Jim B</option>
+            <option value="Chris F">Chris F</option>
+          </select>
         </label>
         <br />
         <label>

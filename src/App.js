@@ -197,6 +197,7 @@ class OrderForm extends React.Component {
           Employee:
           <input type="text" value={this.state.employee}  onChange={this.handleEmployeeChange}/>
         </label>
+        <br />
         <label>
           Day:
           <input type="text" value={this.state.day}  onChange={this.handleDayChange}/>
@@ -206,10 +207,12 @@ class OrderForm extends React.Component {
           Item:
           <input type="text" value={this.state.item}  onChange={this.handleItemChange}/>
         </label>
+        <br />
         <label>
           Price:
           <input type="text" value={this.state.price}  onChange={this.handlePriceChange}/>
         </label>
+        <br />
         <input type="submit" value="Submit" />
       </form>
     )
@@ -269,7 +272,11 @@ class OrderTable extends React.Component {
 
     return (
       <div>
-        <OrderForm addOrder={this.addOrder}/>
+        <div id="new-order" className="pull-right">
+          <h3>Add New Lunch Order</h3>
+          <OrderForm addOrder={this.addOrder}/>
+        </div>
+        <div className="pull-left">
         <table>
           <thead>
             <tr>
@@ -284,6 +291,7 @@ class OrderTable extends React.Component {
             {displayPrice}
           </tbody>
         </table>
+        </div>
       </div>
     );
   }
@@ -390,10 +398,10 @@ class WeeklyOrders extends Component{
 
     return (
       <div>
-        <DaySelector dayOption={this.state.dayOption}
-          onFilterByDay={this.handleFilterByDay}/>
-        <EmployeeSelector employeeOption={this.state.employeeOption}
-          onFilterByName={this.handleFilterByName}/>
+          <DaySelector dayOption={this.state.dayOption}
+            onFilterByDay={this.handleFilterByDay}/>
+          <EmployeeSelector employeeOption={this.state.employeeOption}
+            onFilterByName={this.handleFilterByName}/>
         <OrderTable dayOption={this.state.dayOption}
           employeeOption={this.state.employeeOption}
           orders={this.props.orders} />
@@ -457,6 +465,7 @@ class RestaurantForm extends Component {
           Day:
           <input type="text" value={this.state.day}  onChange={this.handleDayChange}/>
         </label>
+        <br />
         <label>
           Date:
           <input type="text" value={this.state.date}  onChange={this.handleDateChange}/>
@@ -466,10 +475,12 @@ class RestaurantForm extends Component {
           Restaurant Name:
           <input type="text" value={this.state.restaurant}  onChange={this.handleNameChange}/>
         </label>
+        <br />
         <label>
           Menu URL:
           <input type="text" value={this.state.menu}  onChange={this.handleMenuChange}/>
         </label>
+        <br />
         <input type="submit" value="Submit" />
       </form>
     );
@@ -504,22 +515,26 @@ class MenuTable extends Component {
     });
 
     return (
-      <div id="menu-table">
-        <table>
-          <thead>
-            <tr>
-              <th>Day</th>
-              <th>Date</th>
-              <th>Restaurant</th>
-              <th>Menu</th>
-            </tr>
-          </thead>
-          <tbody>
-            {row}
-          </tbody>
-        </table>
-        <h3>Add New Restaurant</h3>
-        <RestaurantForm addRestaurant={this.addRestaurant}/>
+      <div className="row">
+        <div id="menu-table" className="pull-left col-md-6">
+          <table>
+            <thead>
+              <tr>
+                <th>Day</th>
+                <th>Date</th>
+                <th>Restaurant</th>
+                <th>Menu</th>
+              </tr>
+            </thead>
+            <tbody>
+              {row}
+            </tbody>
+          </table>
+        </div>
+        <div id="new-restaurant" className="pull-right col-md-6">
+          <h3>Add New Restaurant</h3>
+          <RestaurantForm addRestaurant={this.addRestaurant}/>
+        </div>
       </div>
     );
   }

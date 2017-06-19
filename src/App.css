@@ -1,6 +1,3 @@
-.App {
-  text-align: center;
-}
 
 .container {
   width: 80% !important;
@@ -9,8 +6,14 @@
   padding-bottom: 50px;
 }
 
-#menu-table {
-  width: 80%;
+#new-restaurant {
+  text-align: right;
+  padding-right: 100px;
+}
+
+#new-order {
+  text-align: right;
+  padding-right: 100px;
 }
 
 th, td {

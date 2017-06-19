@@ -16,7 +16,7 @@
     "eject": "react-scripts eject"
   },
   "description": "## Summary",
-  "main": "index.js",
+  "main": "index.html",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/john-pickett/lunch-orders.git"

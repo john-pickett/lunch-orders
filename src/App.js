@@ -164,6 +164,12 @@ class OrderForm extends React.Component {
     const value = this.state;
     console.log(value);
     this.props.addOrder(value);
+    this.setState({
+      employee: '',
+      day: '',
+      item: '',
+      price: ''
+    });
   }
 
   handleEmployeeChange(event){
@@ -456,6 +462,12 @@ class RestaurantForm extends Component {
     const value = this.state;
     console.log(value);
     this.props.addRestaurant(value);
+    this.setState({
+      day: '',
+      date: '',
+      restaurant: '',
+      menu: ''
+    });
   }
 
   render() {

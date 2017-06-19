@@ -142,9 +142,96 @@ class TableRow extends React.Component {
   }
 }
 
+class OrderForm extends React.Component {
+  constructor(props) {
+  super(props);
+  this.state = {
+    employee: '',
+    day: '',
+    item: '',
+    price: ''
+    };
+
+    this.handleInputChange = this.handleInputChange.bind(this);
+    this.handleEmployeeChange = this.handleEmployeeChange.bind(this);
+    this.handleDayChange = this.handleDayChange.bind(this);
+    this.handleItemChange = this.handleItemChange.bind(this);
+    this.handlePriceChange = this.handlePriceChange.bind(this);
+  }
+
+  handleInputChange(event) {
+    event.preventDefault();
+    const value = this.state;
+    console.log(value);
+    this.props.addOrder(value);
+  }
+
+  handleEmployeeChange(event){
+    this.setState({
+      employee: event.target.value
+    });
+  }
+
+  handleDayChange(event){
+    this.setState({
+      day: event.target.value
+    });
+  }
+
+  handleItemChange(event){
+    this.setState({
+      item: event.target.value
+    });
+  }
+
+  handlePriceChange(event){
+    this.setState({
+      price: event.target.value
+    });
+  }
+
+  render() {
+    return (
+      <form onSubmit={this.handleInputChange}>
+        <label>
+          Employee:
+          <input type="text" value={this.state.employee}  onChange={this.handleEmployeeChange}/>
+        </label>
+        <label>
+          Day:
+          <input type="text" value={this.state.day}  onChange={this.handleDayChange}/>
+        </label>
+        <br />
+        <label>
+          Item:
+          <input type="text" value={this.state.item}  onChange={this.handleItemChange}/>
+        </label>
+        <label>
+          Price:
+          <input type="text" value={this.state.price}  onChange={this.handlePriceChange}/>
+        </label>
+        <input type="submit" value="Submit" />
+      </form>
+    )
+  }
+}
+
 class OrderTable extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      data: this.props.orders
+    };
+
+    this.addOrder = this.addOrder.bind(this);
+  }
+
+  addOrder(input){
+    let data = this.state.data;
+    data.push(input);
+    this.setState({
+      data: data
+    });
   }
 
   render() {
@@ -182,6 +269,7 @@ class OrderTable extends React.Component {
 
     return (
       <div>
+        <OrderForm addOrder={this.addOrder}/>
         <table>
           <thead>
             <tr>
@@ -200,6 +288,8 @@ class OrderTable extends React.Component {
     );
   }
 }
+
+
 
 class EmployeeSelector extends React.Component {
  	constructor(props) {
@@ -358,7 +448,6 @@ class RestaurantForm extends Component {
     const value = this.state;
     console.log(value);
     this.props.addRestaurant(value);
-
   }
 
   render() {
@@ -372,6 +461,7 @@ class RestaurantForm extends Component {
           Date:
           <input type="text" value={this.state.date}  onChange={this.handleDateChange}/>
         </label>
+        <br />
         <label>
           Restaurant Name:
           <input type="text" value={this.state.restaurant}  onChange={this.handleNameChange}/>
@@ -397,13 +487,13 @@ class MenuTable extends Component {
   }
 
   addRestaurant(input){
-    console.log(input);
     let data = this.state.data;
     data.push(input);
     this.setState({
       data: data
     });
   }
+
 
   render() {
     let row = [];
@@ -428,6 +518,7 @@ class MenuTable extends Component {
             {row}
           </tbody>
         </table>
+        <h3>Add New Restaurant</h3>
         <RestaurantForm addRestaurant={this.addRestaurant}/>
       </div>
     );
@@ -438,7 +529,7 @@ class App extends Component {
   render() {
     return (
       <div>
-        <h1>OneSpace Lunch Ordering</h1>
+        <h1>Lunch Orders</h1>
         <h2>Restaurants and Menus</h2>
           <MenuTable days={weekDays}/>
         <h2>Current Lunch Orders</h2>
